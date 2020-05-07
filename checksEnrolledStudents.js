@@ -13,13 +13,19 @@ async function checksEnrolledStudents(studentEnrollmentArray) {
     if (studentStatus.length !== 0) {
       student.push('Inscrito');
     } else {
+      const studentEmail = await connection('VW_VTC_EMAIL_MATRICULA')
+      .where('MATRICULA', student[1].toString())
+      .select('email');
+
+      const email = studentEmail[0] == undefined ? 'Aluno sem e-mail' : studentEmail[0].email;
       student.push('Não inscrito');
+      student.push(email);
     }
 
     studentsCheckEnrollment.push(student);
   }
   
-  const header = ['ORIGEM', 'MATRICULA', 'DISCENTE', 'PROBLEMA APRESENTADO', 'STATUS'];
+  const header = ['ORIGEM', 'MATRICULA', 'DISCENTE', 'PROBLEMA APRESENTADO', 'STATUS', 'EMAIL'];
   studentsCheckEnrollment.unshift(header);
 
   return studentsCheckEnrollment;
