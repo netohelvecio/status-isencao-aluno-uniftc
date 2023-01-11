@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "knex": "^0.21.1",
+    "knex": "^2.4.0",
     "mssql": "^6.2.0",
     "node-xlsx": "^0.15.0"
   }
